@@ -1,0 +1,7 @@
+tmux
+htop
+ibus-mozc
+ffmpeg
+avahi-utils
+lsof
+openssl
