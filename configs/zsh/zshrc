@@ -1,0 +1,74 @@
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+# Initialization code that may require console input (password prompts, [y/n]
+# confirmations, etc.) must go above this block; everything else may go below.
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# load 
+if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
+  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
+fi
+setopt EXTENDED_GLOB
+
+# load lcoal zshrc
+[ -f ~/.zshrc_local ] && . ~/.zshrc_local
+
+# load commands
+function makedoc(){
+    fextname=$(basename -- $1)
+    fname="${fextname%.*}"
+    fext="${fextname##*.}"
+    fpath=$(dirname $1)
+    out=$fname.pdf
+
+    scp $fpath/$fextname lab:/tmp/$fextname
+    ssh lab "docker run -it -v /tmp:/workdir plass/mdtopdf mdtopdf /tmp/$fextname"
+    ssh lab "ls /tmp"
+    scp /tmp/$out $fpath/$out
+}
+
+
+# customized prompt
+export CLICOLOR=1
+
+autoload -Uz compinit && compinit  # Gitの補完を有効化
+
+function left-prompt {
+  name_t='179m%}'      # user name text clolr
+  name_b='000m%}'    # user name background color
+  path_t='255m%}'     # path text clolr
+  path_b='031m%}'   # path background color
+  arrow='087m%}'   # arrow color
+  text_color='%{\e[38;5;'    # set text color
+  back_color='%{\e[30;48;5;' # set background color
+  reset='%{\e[0m%}'   # reset
+  sharp='\uE0B0'      # triangle
+  
+  user="${back_color}${name_b}${text_color}${name_t}"
+  dir="${back_color}${path_b}${text_color}${path_t}"
+  echo "${user}%n%#@%m${back_color}${path_b}${text_color}${name_b}${sharp} ${dir}%~${reset}${text_color}${path_b}${sharp}${reset}\n${text_color}${arrow}→ ${reset}"
+}
+
+PROMPT=`left-prompt` 
+
+# コマンドの実行ごとに改行
+function precmd() {
+    # Print a newline before the prompt, unless it's the
+    # first prompt in the process.
+    if [ -z "$NEW_LINE_BEFORE_PROMPT" ]; then
+        NEW_LINE_BEFORE_PROMPT=1
+    elif [ "$NEW_LINE_BEFORE_PROMPT" -eq 1 ]; then
+        echo ""
+    fi
+}
+
+# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
+[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# alias
+alias gs="git status"
+alias gall="git add *"
+alias gc="git commit"
+alias python="/usr/local/Cellar/python@3.9/3.9.7/Frameworks/Python.framework/Versions/3.9/bin/python3.9"
+alias python3="/usr/local/Cellar/python@3.9/3.9.7/Frameworks/Python.framework/Versions/3.9/bin/python3.9"

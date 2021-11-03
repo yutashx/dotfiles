@@ -1,0 +1,8 @@
+tmux
+htop
+lsof
+git
+make
+cmake
+tree
+python3-neovim

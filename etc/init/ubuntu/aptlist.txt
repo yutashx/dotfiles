@@ -1,0 +1,7 @@
+avahi-utils
+ibus-mozc
+ffmpeg
+openssl
+openssh
+openssl
+git

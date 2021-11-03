@@ -3,7 +3,7 @@ from argparse import ArgumentParser
 
 def get_parser():
     argparser = ArgumentParser(description="some description")
-    argparser.add_argument('--help', action="store_true", help="help instruction")
+    argparser.add_argument("path", help="input path")
 
     return argparser
 
