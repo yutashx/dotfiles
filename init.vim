@@ -82,7 +82,11 @@ function! DeleteParenthesesAdjoin(left, right)
 endfunction
 
 
+<<<<<<< HEAD
 ""**********dein**********
+=======
+"**********dein**********
+>>>>>>> 63f3ce538edae80face13518395b7c52510f3b97
 "if dein#load_state('~/.cache/dein')
 "  call dein#begin('~/.cache/dein')
 "
