@@ -27,7 +27,7 @@ if &compatible
   set nocompatible
 endif
 set background=dark
-colorscheme chroma
+colorscheme gruvbox
 
 "**********key mapping**********
 nnoremap <F3> :set hlsearch!<CR>
@@ -82,50 +82,50 @@ function! DeleteParenthesesAdjoin(left, right)
 endfunction
 
 
-"**********dein**********
-if dein#load_state('~/.cache/dein')
-  call dein#begin('~/.cache/dein')
-
-  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
-  call dein#add('Shougo/deoplete.nvim')
-  call dein#add('mattn/sonictemplate-vim')
-  let g:deoplete#enable_at_startup = 1
-  if !has('nvim')
-    call dein#add('roxma/nvim-yarp')
-    call dein#add('roxma/vim-hug-neovim-rpc')
-  endif
-
-
-  "*******config myself*******
-  "cf.https://leico.github.io/TechnicalNote/VimR/VimR-dein-toml
-  let g:rc_dir = expand('~/.config/nvim/dein/')
-  let s:toml = g:rc_dir . 'dein.toml'
-  let s:lazy_toml = g:rc_dir . 'dein_lazy.toml'
-  let g:vimtex_compiler_progname = 'nvr'
-  if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-  endif
-
-  call dein#load_toml(s:toml,{'lazy':0})
-  call dein#load_toml(s:lazy_toml,{'lazy':1})
-  call dein#recache_runtimepath()
-  call dein#add('Shougo/vimproc.vim', {'build': 'make'})
-  call deoplete#custom#option('auto_complete')
-  call deoplete#custom#option('auto_complete_delay', 1000)
-  call deoplete#custom#option('camel_case')
-  call deoplete#custom#option('max_list', 15)
-
-  "****************************
-
-  call dein#end()
-  call dein#save_state()
-endif
-
-" もし、未インストールものものがあったらインストール
-if dein#check_install()
-  call dein#install()
-endif
-" end dein
+""**********dein**********
+"if dein#load_state('~/.cache/dein')
+"  call dein#begin('~/.cache/dein')
+"
+"  call dein#add('~/.cache/dein/repos/github.com/Shougo/dein.vim')
+"  call dein#add('Shougo/deoplete.nvim')
+"  call dein#add('mattn/sonictemplate-vim')
+"  let g:deoplete#enable_at_startup = 1
+"  if !has('nvim')
+"    call dein#add('roxma/nvim-yarp')
+"    call dein#add('roxma/vim-hug-neovim-rpc')
+"  endif
+"
+"
+"  "*******config myself*******
+"  "cf.https://leico.github.io/TechnicalNote/VimR/VimR-dein-toml
+"  let g:rc_dir = expand('~/.config/nvim/dein/')
+"  let s:toml = g:rc_dir . 'dein.toml'
+"  let s:lazy_toml = g:rc_dir . 'dein_lazy.toml'
+"  let g:vimtex_compiler_progname = 'nvr'
+"  if !exists('g:airline_symbols')
+"    let g:airline_symbols = {}
+"  endif
+"
+"  call dein#load_toml(s:toml,{'lazy':0})
+"  call dein#load_toml(s:lazy_toml,{'lazy':1})
+"  call dein#recache_runtimepath()
+"  call dein#add('Shougo/vimproc.vim', {'build': 'make'})
+"  call deoplete#custom#option('auto_complete')
+"  call deoplete#custom#option('auto_complete_delay', 1000)
+"  call deoplete#custom#option('camel_case')
+"  call deoplete#custom#option('max_list', 15)
+"
+"  "****************************
+"
+"  call dein#end()
+"  call dein#save_state()
+"endif
+"
+"" もし、未インストールものものがあったらインストール
+"if dein#check_install()
+"  call dein#install()
+"endif
+"" end dein
 
 filetype plugin indent on
 filetype on
