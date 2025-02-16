@@ -1,0 +1,11 @@
+arp-scan
+ffmpeg
+imagemagick
+htop
+gnutils
+jq
+neovim
+tmux
+tree
+git-lfs
+docker

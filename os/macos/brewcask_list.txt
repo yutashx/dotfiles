@@ -1,0 +1,17 @@
+rectangle
+alt-tab
+visual-studio-code
+tailscale
+google-chrome
+firefox
+chatgpt
+claude
+obsidian
+notion
+notion-calendar
+slack
+readdle-spark
+discord
+obs
+vlc
+displaylink
